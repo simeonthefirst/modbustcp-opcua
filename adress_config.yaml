@@ -1,0 +1,20 @@
+---
+modbustcp_remote_server:
+  ip: "192.168.0.3"
+  port: 502
+
+opcua_server:
+  ip: "127.0.0.1"
+  port: "4841"
+
+polling_cycle_seconds: 2
+
+nodes:
+  - object_node:
+      name: "Siemens LOGO"
+      nodes:
+        - variable_node:
+            name: "Temperature"
+            type: "float"
+            modbus_type: "holding_register"
+            modbus_address: 528
