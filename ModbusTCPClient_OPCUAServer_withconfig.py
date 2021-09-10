@@ -58,17 +58,19 @@ if __name__ == "__main__":
 
     # starting!
     opcua_server.start()
+    print("OPC UA Server running on: "+ opcua_server.endpoint)
 
     # setup Modbus TCP Client
     modbustcp_client = ModbusTcpClient(
         config['modbustcp_remote_server']['ip'], port=config['modbustcp_remote_server']['port'])
+    print("Modbus TCP Client running on: " + config['modbustcp_remote_server']['ip'] + ":" + config['modbustcp_remote_server']['port'])
 
     try:
         while True:
             for variable_node in var_dic:
-                if var_dic[variable_node]['modbus_type'] == 'holding_register':
+                if (var_dic[variable_node])['modbus_type'] == 'holding_register':
                     result = modbustcp_client.read_holding_registers(
-                        var_dic[variable_node]['modbus_address'], 1)
+                        (var_dic[variable_node])['modbus_address'], 1)
 
                     if hasattr(result, 'message'):
                         # modbus tcp communication error

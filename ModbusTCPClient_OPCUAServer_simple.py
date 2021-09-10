@@ -11,11 +11,14 @@ from opcua import ua, Server
 from pymodbus.client.sync import ModbusTcpClient
 
 
+opcua_ip_port="127.0.0.1:4841"
+modbus_ip = "192.168.0.3"
+
 if __name__ == "__main__":
 
     # setup our server
     opcua_server = Server()
-    opcua_server.set_endpoint("opc.tcp://127.0.0.1:4841/freeopcua/server/")
+    opcua_server.set_endpoint("opc.tcp://" + opcua_ip_port + "/freeopcua/server/")
 
     # setup our own namespace, not really necessary but should as spec
     uri = "http://examples.freeopcua.github.io"
@@ -31,10 +34,12 @@ if __name__ == "__main__":
 
     # starting!
     opcua_server.start()
+    print("OPC UA Server running on: "+ opcua_server.endpoint)
     
 
     # setup Modbus TCP Client
-    modbustcp_client = ModbusTcpClient('192.168.0.3', port=502)
+    modbustcp_client = ModbusTcpClient(modbus_ip, port=502)
+    print("Modbus TCP Client running on: " + modbus_ip + ":502")
 
     try:
         while True:
