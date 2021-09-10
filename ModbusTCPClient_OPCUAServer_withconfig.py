@@ -58,12 +58,12 @@ if __name__ == "__main__":
 
     # starting!
     opcua_server.start()
-    print("OPC UA Server running on: "+ opcua_server.endpoint)
+    print("OPC UA Server running on: ", opcua_server.endpoint.geturl())
 
     # setup Modbus TCP Client
     modbustcp_client = ModbusTcpClient(
         config['modbustcp_remote_server']['ip'], port=config['modbustcp_remote_server']['port'])
-    print("Modbus TCP Client running on: " + config['modbustcp_remote_server']['ip'] + ":" + config['modbustcp_remote_server']['port'])
+    print("Modbus TCP Client running on:", config['modbustcp_remote_server']['ip'], ":", config['modbustcp_remote_server']['port'])
 
     try:
         while True:
