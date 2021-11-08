@@ -44,16 +44,18 @@ if __name__ == "__main__":
     try:
         while True:
             result = modbustcp_client.read_holding_registers(528, 1)
-
+            
+            time.sleep(2)
+            
             if hasattr(result, 'message'):
                 # modbus tcp communication error
                 print(result.message)
             else:
                 print("Temperature: ", result.registers[0]/10, " °C")
 
-            variable_node.set_value(result.registers[0]/10)
+                variable_node.set_value(result.registers[0]/10)
 
-            time.sleep(2)
+            
     finally:
         #close connection, remove subscriptions, etc
         opcua_server.stop()
