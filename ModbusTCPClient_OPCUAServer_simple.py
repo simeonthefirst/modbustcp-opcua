@@ -51,9 +51,9 @@ if __name__ == "__main__":
                 # modbus tcp communication error
                 print(result.message)
             else:
-                print("Temperature: ", result.registers[0]/10, " °C")
+                print("Temperature: ", result.registers[0], " °C")
 
-                variable_node.set_value(result.registers[0]/10)
+                variable_node.set_value(result.registers[0])
 
             
     finally:
