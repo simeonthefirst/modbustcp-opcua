@@ -3,7 +3,7 @@
 # used source: https://github.com/FreeOpcUa/python-opcua/blob/master/examples/server-minimal.py
 # used source: https://pymodbus.readthedocs.io/en/latest/readme.html#example-code
 
-from pymodbus.client.sync import ModbusTcpClient
+from pymodbus.client import ModbusTcpClient
 from opcua import ua, Server
 import time
 import sys
